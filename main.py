@@ -12,11 +12,22 @@ OCEAN = (32, 98, 179)
 BLACK = (0, 0, 0)
 SUN = (255, 187, 0)
 WAVES = (4, 52, 110)
+TOWEL = (255, 145, 217)
 
 PI = math.pi
 
 SIZE = (1000, 750)
 FPS = 60
+
+# functions
+def wave_right(x, y):
+    pygame.draw.arc(screen, WAVES, [x, y, 150, 150], 0, PI/2, 10)
+    pygame.draw.arc(screen, WAVES, [x, y, 130, 150], 0, PI/2.5, 10)
+def wave_left(x, y):
+    pygame.draw.arc(screen, WAVES, [x, y, 150, 150], PI/2, PI, 10)
+    pygame.draw.arc(screen, WAVES, [x+300, y-5, 150, 155], PI/1.6, PI, 10)
+    # pygame.draw.polygon(screen, OCEAN, [(x+75, y+100), (x+130, y+75), (x+200, y+100)])
+
 
 pygame.init()
 
@@ -36,9 +47,16 @@ while running:
             running = False
 
     screen.fill(SKY_BLUE)
+    # waves
+    pygame.draw.rect(screen, OCEAN, [0, 300, 1000, 1000])
+    for num in range(10):
+        wave_right(num*90, 250)
+    for num in range(-5, 10):
+        wave_left(num*90, 350)
+    for num in range(10):
+        wave_right(num*90, 450)
 
     # beach
-    pygame.draw.rect(screen, OCEAN, [0, 300, 1000, 1000])
     pygame.draw.rect(screen, SAND, [0, 600, 1000, 1000])
     pygame.draw.arc(screen, SAND, [-50, 500, 300, 700], 0, 180, 250)
     pygame.draw.arc(screen, SAND, [0, 500, 500, 700], 0, 180, 250)
@@ -56,13 +74,9 @@ while running:
     # sun
     pygame.draw.circle(screen, SUN, (0, 0), 150)
 
-    # wave
-    def wave(x, y):
-        pygame.draw.arc(screen, WAVES, [x, y, x+50, y+75], 0, PI/2, 10)
-        pygame.draw.arc(screen, WAVES, [x, y, x + 20, y + 75], 0, PI / 2.5, 10)
-        #pygame.draw.polygon(screen, OCEAN, [(x+75, y+100), (x+130, y+75), (x+200, y+100)])
+    # towel
+    pygame.draw.polygon(screen, TOWEL, [(200, 550), (150, 650), (450, 750), (500, 650)])
 
-    wave(100, 100)
 
     pygame.display.flip()
 
