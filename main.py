@@ -27,21 +27,7 @@ def wave_left(x, y):
     pygame.draw.arc(screen, WAVES, [x, y, 150, 150], PI/2, PI, 10)
     pygame.draw.arc(screen, WAVES, [x+300, y-5, 150, 155], PI/1.6, PI, 10)
     # pygame.draw.polygon(screen, OCEAN, [(x+75, y+100), (x+130, y+75), (x+200, y+100)])
-def wave_animate(x, y):
-    pygame.draw.arc(screen, WAVES, [x, y, 150, 150], 0, PI / 2, 10)
-    pygame.draw.arc(screen, WAVES, [x, y, 130, 150], 0, PI / 2.5, 10)
 
-    pygame.draw.arc(screen, WAVES, [x-12.5, y+12.5, 140, 125], 0, PI / 2.1, 10)
-    pygame.draw.arc(screen, WAVES, [x-12.5, y+12.5, 120, 125], 0, PI / 2.6, 10)
-
-    pygame.draw.arc(screen, WAVES, [x-25, y+25, 130, 100], 0, PI / 2.2, 10)
-    pygame.draw.arc(screen, WAVES, [x-25, y+25, 110, 100], 0, PI / 2.7, 10)
-
-    pygame.draw.arc(screen, WAVES, [x-37.5, y+37.5, 120, 75], 0, PI / 2.4, 10)
-    pygame.draw.arc(screen, WAVES, [x-37.5, y+37.5, 100, 75], 0, PI / 2.8, 10)
-
-    pygame.draw.arc(screen, WAVES, [x-50, y+50, 110, 50], 0, PI / 2.6, 10)
-    pygame.draw.arc(screen, WAVES, [x-50, y+50, 90, 50], 0, PI / 2.9, 10)
 
 
 pygame.init()
@@ -52,6 +38,8 @@ pygame.display.set_caption("The Beach")
 clock = pygame.time.Clock()
 
 running = True
+
+wave_x = 600
 
 while running:
 
@@ -65,12 +53,22 @@ while running:
     # waves
     pygame.draw.rect(screen, OCEAN, [0, 300, 1000, 1000])
 
-    for num in range(10):
+    '''for num in range(10):
         wave_right(num*90, 250)
     for num in range(-5, 10):
         wave_left(num*90, 350)
     for num in range(10):
-        wave_right(num*90, 450)
+        wave_right(num*90, 450)'''
+
+    wave_right(wave_x, 250)
+    wave_x -= 10
+    wave_right(wave_x-100, 250)
+    wave_x -= 10
+    wave_right(wave_x-200, 250)
+    wave_x -= 10
+    wave_right(wave_x-300, 250)
+    wave_x -= 10
+
 
     # beach
     pygame.draw.rect(screen, SAND, [0, 600, 1000, 1000])
@@ -102,6 +100,9 @@ while running:
     pygame.draw.polygon(screen, TOWEL, [(200, 550), (150, 650), (450, 750), (500, 650)])
 
     #wave_animate(500, 600)
+
+
+
     pygame.display.flip()
 
     clock.tick(FPS)
