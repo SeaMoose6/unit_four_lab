@@ -25,7 +25,7 @@ def wave_right(x, y):
     pygame.draw.arc(screen, WAVES, [x, y, 130, 150], 0, PI/2.5, 10)
 def wave_left(x, y):
     pygame.draw.arc(screen, WAVES, [x, y, 150, 150], PI/2, PI, 10)
-    pygame.draw.arc(screen, WAVES, [x+300, y-5, 150, 155], PI/1.6, PI, 10)
+    pygame.draw.arc(screen, WAVES, [x+30, y-5, 150, 155], PI/1.6, PI, 10)
     # pygame.draw.polygon(screen, OCEAN, [(x+75, y+100), (x+130, y+75), (x+200, y+100)])
 
 
@@ -39,7 +39,28 @@ clock = pygame.time.Clock()
 
 running = True
 
-wave_x = 600
+
+
+
+wave_x1 = 200
+wave_y1 = 0
+
+wave_x2 = 400
+wave_y2 = 0
+
+wave_x3 = 600
+wave_y3 = 0
+
+wave_x4 = 800
+wave_y4 = 0
+
+wave_x1_2 = 200
+
+wave_x2_2 = 400
+
+wave_x3_2 = 600
+
+wave_x4_2 = 800
 
 while running:
 
@@ -59,16 +80,47 @@ while running:
         wave_left(num*90, 350)
     for num in range(10):
         wave_right(num*90, 450)'''
+    if wave_x1 < -25:
+        wave_x1 = 800
+    if wave_x2 < -25:
+        wave_x2 = 800
+    if wave_x3 < -25:
+        wave_x3 = 800
+    if wave_x4 < -25:
+        wave_x4 = 800
 
-    wave_right(wave_x, 250)
-    wave_x -= 10
-    wave_right(wave_x-100, 250)
-    wave_x -= 10
-    wave_right(wave_x-200, 250)
-    wave_x -= 10
-    wave_right(wave_x-300, 250)
-    wave_x -= 10
+    if wave_x1_2 > 850:
+        wave_x1_2 = 0
+    if wave_x2_2 > 850:
+        wave_x2_2 = 0
+    if wave_x3_2 > 850:
+        wave_x3_2 = 0
+    if wave_x4_2 > 850:
+        wave_x4_2 = 0
 
+    wave_right(wave_x1, wave_y1+250)
+    wave_x1 -= 30
+
+    wave_right(wave_x2, wave_y2+250)
+    wave_x2 -= 30
+
+    wave_right(wave_x3, wave_y3+250)
+    wave_x3 -= 30
+
+    wave_right(wave_x4, wave_y4+250)
+    wave_x4 -= 30
+
+    wave_left(wave_x1_2, wave_y1+400)
+    wave_x1_2 += 30
+
+    wave_left(wave_x2_2, wave_y2+400)
+    wave_x2_2 += 30
+
+    wave_left(wave_x3_2, wave_y3+400)
+    wave_x3_2 += 30
+
+    wave_left(wave_x4_2, wave_y4+400)
+    wave_x4_2 += 30
 
     # beach
     pygame.draw.rect(screen, SAND, [0, 600, 1000, 1000])
@@ -108,3 +160,51 @@ while running:
     clock.tick(FPS)
 
 pygame.quit()
+import pygame
+import math
+
+#in terminal "pip install pygame"
+
+pygame.init()
+
+# constants
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+
+
+PI = math.pi
+
+SIZE = (1000, 750)
+FPS = 60
+
+
+# functions
+
+
+
+pygame.init()
+
+screen = pygame.display.set_mode(SIZE)
+pygame.display.set_caption("The Beach")
+
+clock = pygame.time.Clock()
+
+running = True
+
+while running:
+
+    for event in pygame.event.get():
+
+        # check for specific user event
+        if event.type == pygame.QUIT:
+            running = False
+
+    pygame.display.flip()
+
+    clock.tick(FPS)
+
+pygame.quit()
+
